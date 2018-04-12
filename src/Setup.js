@@ -4,16 +4,41 @@
  * @flow
  */
 
-import React, { Component } from "react";
-import { StyleSheet, ActivityIndicator, Text, View } from "react-native";
-import { connect } from "react-redux";
-import { fetchData } from "./actions";
-import Login from './screens/login'
+import React, { Component } from 'react'
+import {
+  StyleSheet,
+  ActivityIndicator,
+  Text,
+  View
+} from 'react-native'
+import { connect } from 'react-redux'
+import { fetchData } from './actions'
+
+
 
 class Setup extends Component {
+  componentDidMount(){
+    this.props.dispatch(fetchData())
+  }
+
+
   render() {
-    return <Login />
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        {
+          this.props.data ? (<Text>{this.props.data}</Text>) : (<ActivityIndicator size='large' />)
+        }
+      </View>
+    );
   }
 }
 
-export default connect()(Setup);
+
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    data: state.data.items
+  }
+}
+
+export default connect(mapStateToProps)(Setup)
