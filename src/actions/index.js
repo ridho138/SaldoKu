@@ -2,7 +2,7 @@
 
 
 export const FETCH_DATA = 'FETCH_DATA'
-export const fetchData = (state, action) => {
+export const fetchData = () => {
   return {
     type: FETCH_DATA
   }
