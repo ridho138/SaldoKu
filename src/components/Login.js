@@ -23,6 +23,15 @@ class Login extends Component {
     // Alert.alert('Title', '')
     // 3. Jika email dan password ada isinya maka lakukan console.log()
     // If - else
+
+    const { email, password } = this.state;
+
+    if (email === "" && password === "") {
+      Alert.alert("Warning", "Email and/or Password cannot be empty!");
+    } else {
+      console.log(`Email: ${email}`);
+      console.log(`Password: ${password}`);
+    }
   }
 
   render() {
