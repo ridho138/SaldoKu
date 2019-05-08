@@ -17,6 +17,14 @@ class Login extends Component {
     };
   }
 
+  loginHandler = () => {
+    // 1. Lakukan validasi email dan password tidak boleh kosong
+    // 2. Jika email dan password kosong, tampilkan Alert notif
+    // Alert.alert('Title', '')
+    // 3. Jika email dan password ada isinya maka lakukan console.log()
+    // If - else
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -37,7 +45,9 @@ class Login extends Component {
             onChangeText={value => this.setState({ password: value })}
             value={this.state.password}
           />
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity 
+            onPress={() => this.loginHandler()}
+            style={styles.buttonContainer}>
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
         </View>

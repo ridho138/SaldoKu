@@ -13,13 +13,25 @@ import {
 } from 'react-native'
 import Login from "./components/Login"
 import Signup from "./components/Signup"
+import Home from './components/Home'
+import { createStackNavigator } from 'react-navigation'
 
 class Setup extends Component {
   render() {
-    return (
-      <Signup />
-    );
+    return <rootNavigation />
   }
 }
+
+const rootNavigation = createStackNavigator({
+  LoginPage: {
+    screen: Login
+  }, 
+  SignupPage: {
+    screen: Signup
+  },
+  HomePage: {
+    screen: Home
+  }
+})
 
 export default Setup
