@@ -11,34 +11,15 @@ import {
   Text,
   View
 } from 'react-native'
-import { connect } from 'react-redux'
-import { fetchData } from './actions'
-
-
+import Login from "./components/Login"
+import Signup from "./components/Signup"
 
 class Setup extends Component {
-  componentDidMount(){
-    this.props.dispatch(fetchData())
-  }
-
-
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {
-          this.props.data ? (<Text>{this.props.data}</Text>) : (<ActivityIndicator size='large' />)
-        }
-      </View>
+      <Signup />
     );
   }
 }
 
-
-const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-    data: state.data.items
-  }
-}
-
-export default connect(mapStateToProps)(Setup)
+export default Setup
