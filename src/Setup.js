@@ -18,11 +18,11 @@ import { createStackNavigator } from 'react-navigation'
 
 class Setup extends Component {
   render() {
-    return <rootNavigation />
+    return <RootNavigation />
   }
 }
 
-const rootNavigation = createStackNavigator({
+const RootNavigation = createStackNavigator({
   LoginPage: {
     screen: Login
   }, 
@@ -32,6 +32,9 @@ const rootNavigation = createStackNavigator({
   HomePage: {
     screen: Home
   }
+},
+{
+  headerMode:"none"
 })
 
 export default Setup
