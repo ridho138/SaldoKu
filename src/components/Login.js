@@ -5,7 +5,8 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Alert
 } from "react-native";
 
 class Login extends Component {
@@ -16,6 +17,23 @@ class Login extends Component {
       password: ""
     };
   }
+
+  loginHandler = () => {
+    // 1. Lakukan validasi email dan password tidak boleh kosong
+    // 2. Jika email dan password kosong, tampilkan Alert notif
+    // Alert.alert('Title', '')
+    // 3. Jika email dan password ada isinya maka lakukan console.log()
+    // If - else
+
+    const { email, password } = this.state;
+
+    if (email === "" && password === "") {
+      Alert.alert("Warning", "Email and/or Password cannot be empty!");
+    } else {
+      console.log(`Email: ${email}`);
+      console.log(`Password: ${password}`);
+    }
+  };
 
   render() {
     return (
@@ -37,9 +55,20 @@ class Login extends Component {
             onChangeText={value => this.setState({ password: value })}
             value={this.state.password}
           />
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => this.loginHandler()}
+          >
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
+        </View>
+        <View style={styles.footerContainer}>
+          <Text
+            style={styles.textFooter}
+            onPress={() => this.props.navigation.navigate("Signup")}
+          >
+            New User? Signup here
+          </Text>
         </View>
       </View>
     );
@@ -83,6 +112,15 @@ const styles = StyleSheet.create({
     color: "#fff",
     textAlign: "center",
     fontWeight: "700"
+  },
+  footerContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    paddingBottom: 20
+  },
+  textFooter: {
+    color: "#000"
   }
 });
 
