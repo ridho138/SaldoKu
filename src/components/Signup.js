@@ -20,6 +20,13 @@ class Signup extends Component {
     };
   }
 
+  // First challenge
+  // 1. Bikin function utk signup
+  // 2. email/ password/ confirmation password tidak boleh ada yg kosong
+  // 3. dispatch action jika email dan password tidak kosong 
+  // (dan kolom password === confirmation password)
+  // 
+
   render() {
     return (
       <View style={styles.container}>
