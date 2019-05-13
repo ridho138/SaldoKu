@@ -1,5 +1,7 @@
 import axios from "axios"
 
+const BASE_URL = 'http://codefazz.com:3000'
+
 export const FETCH_DATA = 'FETCH_DATA'
 export const fetchData = () => {
   return {
@@ -8,16 +10,18 @@ export const fetchData = () => {
 }
 
 export const FETCH_LOGIN = 'FETCH_LOGIN'
-export const fetchLogin = () => {
+export const fetchLogin = (email, password) => {
   return {
     type: FETCH_LOGIN,
-    payload: apiLogin()
+    payload: apiLogin(email, password)
   }
 }
 
-const apiLogin = () => {
-  const url = "http://codefazz.com:3000/api/Users/login"
-  return axios.post(url)
+const apiLogin = (email, password) => {
+  const url = `${BASE_URL}/api/Users/login`
+  const payload = { email, password }
+
+  return axios.post(url, payload)
     .then(res => {
       console.log(res)
       return res.data
@@ -28,16 +32,18 @@ const apiLogin = () => {
 }
 
 export const FETCH_SIGNUP = 'FETCH_SIGNUP'
-export const fetchSignup = () => {
+export const fetchSignup = (email, password) => {
   return {
     type: FETCH_SIGNUP,
-    payload: apiSignup()
+    payload: apiSignup(email, password)
   }
 }
 
-const apiSignup = () => {
-  const url = "http://codefazz.com:3000/api/Users"
-  return axios.post(url)
+const apiSignup = (email, password) => {
+  const url = `${BASE_URL}/api/Users`
+  const payload = { email, password }
+
+  return axios.post(url, payload)
     .then(res => {
       console.log(res)
       return res.data
@@ -48,15 +54,15 @@ const apiSignup = () => {
 }
 
 export const FETCH_LOGOUT = 'FETCH_LOGOUT'
-export const fetchLogout = () => {
+export const fetchLogout = (token) => {
   return {
     type: FETCH_LOGOUT,
-    payload: apiLogout()
+    payload: apiLogout(token)
   }
 }
 
-const apiLogout = () => {
-  const url = "http://codefazz.com:3000/api/Users/logout?access_token=xxxxx"
+const apiLogout = (token) => {
+  const url = `${BASE_URL}/api/Users/logout?access_token=${token}`
   return axios.post(url)
     .then(res => {
       console.log(res)
