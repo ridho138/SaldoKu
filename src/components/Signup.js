@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {
   StyleSheet,
+  Alert,
   Text,
   View,
   TextInput,
@@ -20,12 +21,21 @@ class Signup extends Component {
     };
   }
 
-  // First challenge
-  // 1. Bikin function utk signup
-  // 2. email/ password/ confirmation password tidak boleh ada yg kosong
-  // 3. dispatch action jika email dan password tidak kosong 
-  // (dan kolom password === confirmation password)
-  // 
+  signupHandler = () => {
+    const { email, password, confirmPassword } = this.state
+
+    if (email === '' || password === '' || confirmPassword === '') {
+      Alert.alert('Warning', 'Email dan Password tidak boleh kosong!')
+    } else {
+      
+      if (password === confirmPassword){
+        this.props.dispatch(fetchSignup(email, password))
+      } else {
+        Alert.alert('Warning', 'Password dan Confirmation Password tidak sama!')
+      }
+
+    }
+  }
 
   render() {
     return (

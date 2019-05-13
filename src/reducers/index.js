@@ -3,6 +3,7 @@ import { PENDING, FULFILLED, REJECTED } from 'redux-promise-middleware'
 import { 
   FETCH_DATA,
   FETCH_SIGNUP,
+  FETCH_LOGIN,
 } from '../actions/index'
 
 const data = (state = {
@@ -49,13 +50,40 @@ const dataSignup = (state = {
   }
 }
 
-// Second challenge
-// Login dan Logout
+const dataLogin = (state={
+  isLoading: false,
+  data: {}
+}, action) => {
+  switch (action.type){
+    case `${FETCH_LOGIN}_${PENDING}`:
+      return {
+        ...state,
+        isLoading: true,
+      }
 
+    case `${FETCH_LOGIN}_${FULFILLED}`:
+      return {
+        ...state,
+        data: action.payload,
+        isLoading: false
+      }
+
+    case `${FETCH_LOGIN}_${REJECTED}`:
+      return {
+        ...state,
+        isLoading: false
+      }
+
+   
+    default:
+      return state
+  }
+}
 
 const rootReducer = combineReducers({
   data,
-  dataSignup
+  dataSignup,
+  dataLogin
 })
 
 export default rootReducer

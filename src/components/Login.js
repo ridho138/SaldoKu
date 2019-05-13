@@ -27,9 +27,13 @@ class Login extends Component {
       Alert.alert("Warning", "Email and/or Password cannot be empty!");
     } else {
       this.props.dispatch(fetchLogin(email, password))
-      // this.props.navigation.navigate("HomePage")
-      // console.log(`Email: ${email}`);
-      // console.log(`Password: ${password}`);
+    }
+  }
+
+  componentWillReceiveProps(){
+    const { loginResult } = this.props
+    if (!loginResult.isLoading && loginResult.data.id) {
+      this.props.navigation.navigate('HomePage')
     }
   }
 
@@ -68,7 +72,7 @@ class Login extends Component {
 
   mapStateToProps = state => {
     return {
-
+      loginResult: state.dataLogin
     }
   }
 }
