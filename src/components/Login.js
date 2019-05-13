@@ -8,6 +8,8 @@ import {
   Dimensions,
   Alert
 } from "react-native";
+import { connect } from 'react-redux'
+import { fetchLogin } from '../actions/index'
 
 class Login extends Component {
   constructor(props) {
@@ -19,20 +21,15 @@ class Login extends Component {
   }
 
   loginHandler = () => {
-    // 1. Lakukan validasi email dan password tidak boleh kosong
-    // 2. Jika email dan password kosong, tampilkan Alert notif
-    // Alert.alert('Title', '')
-    // 3. Jika email dan password ada isinya maka lakukan console.log()
-    // If - else
-
     const { email, password } = this.state;
 
     if (email === "" && password === "") {
       Alert.alert("Warning", "Email and/or Password cannot be empty!");
     } else {
-      this.props.navigation.navigate("HomePage")
-      console.log(`Email: ${email}`);
-      console.log(`Password: ${password}`);
+      this.props.dispatch(fetchLogin(email, password))
+      // this.props.navigation.navigate("HomePage")
+      // console.log(`Email: ${email}`);
+      // console.log(`Password: ${password}`);
     }
   }
 
@@ -67,6 +64,12 @@ class Login extends Component {
         </View>
       </View>
     );
+  }
+
+  mapStateToProps = state => {
+    return {
+
+    }
   }
 }
 
@@ -115,4 +118,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+export default connect(mapStateToProps) (Login);

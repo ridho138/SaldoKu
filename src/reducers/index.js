@@ -22,6 +22,8 @@ export const data = (state = {
 }
 
 
+
+
 const rootReducer = combineReducers({
   data
 })
