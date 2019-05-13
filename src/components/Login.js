@@ -5,7 +5,8 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Alert
 } from "react-native";
 
 class Login extends Component {
@@ -29,6 +30,7 @@ class Login extends Component {
     if (email === "" && password === "") {
       Alert.alert("Warning", "Email and/or Password cannot be empty!");
     } else {
+      this.props.navigation.navigate("HomePage")
       console.log(`Email: ${email}`);
       console.log(`Password: ${password}`);
     }
@@ -59,6 +61,9 @@ class Login extends Component {
             style={styles.buttonContainer}>
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
+        </View>
+        <View style={styles.footerContainer}>
+          <Text onPress={() => this.props.navigation.navigate("SignupPage")}>New User? Signup here.</Text>
         </View>
       </View>
     );
@@ -102,6 +107,11 @@ const styles = StyleSheet.create({
     color: "#fff",
     textAlign: "center",
     fontWeight: "700"
+  },
+  footerContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 

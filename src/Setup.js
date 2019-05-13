@@ -32,6 +32,9 @@ const RootNavigation = createStackNavigator({
   HomePage: {
     screen: Home
   }
+},
+{
+  headerMode:"none"
 })
 
 
