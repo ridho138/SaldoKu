@@ -71,12 +71,6 @@ class Signup extends Component {
       </View>
     );
   }
-
-  mapStateToProps = state => {
-    return {
-      signupResult: state.dataSignup
-    }
-  }
 }
 
 const styles = StyleSheet.create({
@@ -118,5 +112,11 @@ const styles = StyleSheet.create({
     fontWeight: "700"
   }
 });
+
+const mapStateToProps = state => {
+  return {
+    signupResult: state.dataSignup
+  }
+}
 
 export default connect(mapStateToProps) (Signup);

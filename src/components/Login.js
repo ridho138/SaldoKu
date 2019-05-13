@@ -69,11 +69,11 @@ class Login extends Component {
       </View>
     );
   }
+}
 
-  mapStateToProps = state => {
-    return {
-      loginResult: state.dataLogin
-    }
+const mapStateToProps = state => {
+  return {
+    loginResult: state.dataLogin
   }
 }
 
