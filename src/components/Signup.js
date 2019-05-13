@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   Dimensions
 } from "react-native";
+import { connect } from 'react-redux'
+import { fetchSignup } from '../actions/index'
 
 class Signup extends Component {
   constructor(props) {
@@ -19,7 +21,6 @@ class Signup extends Component {
   }
 
   render() {
-      
     return (
       <View style={styles.container}>
         <View style={styles.logoContainer}>
@@ -52,6 +53,12 @@ class Signup extends Component {
         </View>
       </View>
     );
+  }
+
+  mapStateToProps = state => {
+    return {
+      signupResult: state.dataSignup
+    }
   }
 }
 
@@ -95,4 +102,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Signup;
+export default connect(mapStateToProps) (Signup);

@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux'
 import { PENDING, FULFILLED, REJECTED } from 'redux-promise-middleware'
 import { 
-  FETCH_DATA
+  FETCH_DATA,
+  FETCH_SIGNUP,
 } from '../actions/index'
 
-
-
-export const data = (state = {
+const data = (state = {
   items: '',
 }, action) => {
   switch (action.type){
@@ -21,11 +20,39 @@ export const data = (state = {
   }
 }
 
+const dataSignup = (state = {
+  isLoading: false,
+  data: {}
+}, action) => {
+  switch (action.type){
+    case `${FETCH_SIGNUP}_${PENDING}`:
+      return {
+        ...state,
+        isLoading: true
+      }
 
+    case `${FETCH_SIGNUP}_${FULFILLED}`:
+      return {
+        ...state,
+        isLoading: false,
+        data: action.payload
+      }
+
+    case `${FETCH_SIGNUP}_${REJECTED}`:
+      return {
+        ...state,
+        isLoading: false
+      }
+
+    default:
+      return state
+  }
+}
 
 
 const rootReducer = combineReducers({
-  data
+  data,
+  dataSignup
 })
 
 export default rootReducer
