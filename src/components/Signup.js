@@ -37,12 +37,19 @@ class Signup extends Component {
 
     }
   }
-
-  render() {
-    const { emailProps, tokenProps } = this.props
+  
+  componentWillReceiveProps(nextProp) {
+    const { emailProps, tokenProps } = nextProp
     if (emailProps && tokenProps) {
       this.props.navigation.navigate('LoginPage')
     }
+  }
+
+  render() {
+    // const { emailProps, tokenProps } = this.props
+    // if (emailProps && tokenProps) {
+    //   this.props.navigation.navigate('LoginPage')
+    // }
 
     return (
       <View style={styles.container}>

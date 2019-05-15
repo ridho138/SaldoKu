@@ -30,9 +30,9 @@ class Login extends Component {
     }
   }
 
-  componentWillReceiveProps(){
-    const { loginResult } = this.props
-    if (!loginResult.isLoading && loginResult.data.id) {
+  componentWillReceiveProps(nextProps){
+    const { loginResult } = nextProps
+    if (!loginResult.isLoading && loginResult.id) {
       this.props.navigation.navigate('HomePage')
     }
   }
@@ -73,7 +73,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    loginResult: state.dataLogin
+    loginResult: state.dataLogin.data
   }
 }
 
