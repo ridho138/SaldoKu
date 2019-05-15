@@ -13,7 +13,10 @@ class Home extends Component {
         </View>
         <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center", paddingBottom: 15 }}>
           <TouchableOpacity
-            onPress={ () => this.props.dispatch(fetchLogout(id))}
+            onPress={ () => {
+              this.props.dispatch(fetchLogout(id))
+              this.props.navigation.goBack()
+            }}
             style={styles.buttonContainer}
           >
             <Text style={styles.buttonText}>LOGOUT</Text>
