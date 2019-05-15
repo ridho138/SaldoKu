@@ -23,6 +23,7 @@ class Signup extends Component {
 
   signupHandler = () => {
     const { email, password, confirmPassword } = this.state
+    console.log('sadasdasddsad ', email)
 
     if (email === '' || password === '' || confirmPassword === '') {
       Alert.alert('Warning', 'Email dan Password tidak boleh kosong!')
@@ -37,15 +38,12 @@ class Signup extends Component {
     }
   }
 
-  componentWillReceiveProps() {
-    console.log(this.props.signupResult)
-    const { email, id } = this.props.signupResult
-    if (email && id) {
+  render() {
+    const { emailProps, tokenProps } = this.props
+    if (emailProps && tokenProps) {
       this.props.navigation.navigate('LoginPage')
     }
-  }
 
-  render() {
     return (
       <View style={styles.container}>
         <View style={styles.logoContainer}>
@@ -72,7 +70,9 @@ class Signup extends Component {
             onChangeText={value => this.setState({ confirmPassword: value })}
             value={this.state.confirmPassword}
           />
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity 
+            onPress={this.signupHandler}
+            style={styles.buttonContainer}>
             <Text style={styles.buttonText}>SIGNUP</Text>
           </TouchableOpacity>
         </View>
@@ -122,8 +122,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
-    signupResult: state.dataSignup
+    // signupResult: state.dataSignup
+    emailProps: state.dataSignup.email,
+    tokenProps: state.dataSignup.id,
+    isLoadingProps: state.dataSignup.isLoading
   }
 }
 

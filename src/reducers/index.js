@@ -21,9 +21,14 @@ const data = (state = {
   }
 }
 
+// emailProps: state.dataSignup.email,
+//     tokenProps: state.dataSignup.id,
+//     isLoadingProps: state.dataSignup.isLoading
+
 const dataSignup = (state = {
   isLoading: false,
-  data: {}
+  id: '',
+  email: ''
 }, action) => {
   switch (action.type){
     case `${FETCH_SIGNUP}_${PENDING}`:
@@ -36,7 +41,8 @@ const dataSignup = (state = {
       return {
         ...state,
         isLoading: false,
-        data: action.payload
+        email: action.payload.email,
+        id: action.payload.id,
       }
 
     case `${FETCH_SIGNUP}_${REJECTED}`:
