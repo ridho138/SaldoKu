@@ -32,6 +32,7 @@ class Login extends Component {
 
   componentWillReceiveProps(nextProps){
     const { loginResult } = nextProps
+    console.log(nextProps)
     if (!loginResult.isLoading && loginResult.id) {
       this.props.navigation.navigate('HomePage')
     }

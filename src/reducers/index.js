@@ -21,10 +21,6 @@ const data = (state = {
   }
 }
 
-// emailProps: state.dataSignup.email,
-//     tokenProps: state.dataSignup.id,
-//     isLoadingProps: state.dataSignup.isLoading
-
 const dataSignup = (state = {
   isLoading: false,
   id: '',
