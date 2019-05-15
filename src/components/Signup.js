@@ -37,6 +37,14 @@ class Signup extends Component {
     }
   }
 
+  componentWillReceiveProps() {
+    console.log(this.props.signupResult)
+    const { email, id } = this.props.signupResult
+    if (email && id) {
+      this.props.navigation.navigate('LoginPage')
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
