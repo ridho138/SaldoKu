@@ -37,7 +37,7 @@ class Signup extends Component {
 
     }
   }
-  
+
   componentWillReceiveProps(nextProp) {
     const { emailProps, tokenProps } = nextProp
     if (emailProps && tokenProps) {
@@ -46,10 +46,7 @@ class Signup extends Component {
   }
 
   render() {
-    // const { emailProps, tokenProps } = this.props
-    // if (emailProps && tokenProps) {
-    //   this.props.navigation.navigate('LoginPage')
-    // }
+    
 
     return (
       <View style={styles.container}>
@@ -82,6 +79,7 @@ class Signup extends Component {
             style={styles.buttonContainer}>
             <Text style={styles.buttonText}>SIGNUP</Text>
           </TouchableOpacity>
+          
         </View>
       </View>
     );
