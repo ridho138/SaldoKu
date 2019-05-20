@@ -14,6 +14,8 @@ import {
 import Login from "./components/Login"
 import Signup from "./components/Signup"
 import Home from './components/Home'
+import IncomeList from "./components/pages/IncomeList"
+import IncomeAdd from "./components/pages/IncomeAdd.js"
 import { createStackNavigator } from 'react-navigation'
 
 class Setup extends Component {
@@ -31,6 +33,12 @@ const RootNavigation = createStackNavigator({
   },
   HomePage: {
     screen: Home
+  },
+  IncomeList: {
+    screen: IncomeList
+  },
+  IncomeAdd: {
+    screen: IncomeAdd
   }
 },
 {

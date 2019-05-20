@@ -15,8 +15,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: ""
+      email: "rafdilla@gmail.com",
+      password: "12345678"
     };
   }
 
@@ -33,7 +33,7 @@ class Login extends Component {
   componentWillReceiveProps(nextProps){
     const { loginResult } = nextProps
     console.log(nextProps)
-    if (!loginResult.isLoading && loginResult.id) {
+    if (!loginResult.isLoading && loginResult.data.id) {
       this.props.navigation.navigate('HomePage')
     }
   }
@@ -74,7 +74,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    loginResult: state.dataLogin.data
+    loginResult: state.dataLogin
   }
 }
 
