@@ -6,7 +6,7 @@ import { fetchLogout } from "../actions/index";
 class Home extends Component {
   render() {
     const { id } = this.props.loginResult;
-    console.log(this.props.loginResult)
+    console.log(this.props.loginResult);
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
@@ -17,11 +17,17 @@ class Home extends Component {
           <Text style={styles.saldoText}>Sisa Saldo</Text>
           <Text style={styles.saldoAmount}>IDR. 140,000.00</Text>
         </View>
-        <TouchableOpacity style={styles.incomeContainer} onPress={() => this.props.navigation.navigate('IncomeList')}>
+        <TouchableOpacity
+          style={styles.incomeContainer}
+          onPress={() => this.props.navigation.navigate("IncomeList")}
+        >
           <Text style={styles.incomeText}>Total Income</Text>
           <Text style={styles.incomeAmount}>IDR. 500,000.00</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.spendingContainer}>
+        <TouchableOpacity
+          style={styles.spendingContainer}
+          onPress={() => this.props.navigation.navigate("SpendingListPage")}
+        >
           <Text style={styles.spendingText}>Total Spending</Text>
           <Text style={styles.spendingAmount}>IDR. 360,000.00</Text>
         </TouchableOpacity>

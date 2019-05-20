@@ -30,11 +30,12 @@ class SpendingList extends Component {
   }
 
   renderList = item => {
+      console.log(item)
     return (
       <View style={styles.listContainer}>
-        <Text style={styles.textLabel}>{item.label}</Text>
-        <Text style={styles.textAmount}>{item.amount}</Text>
-        <Text style={styles.textOrganization}>{item.datetime}</Text>
+        <Text style={styles.textLabel}>{item.item.label}</Text>
+        <Text style={styles.textAmount}>{item.item.amount}</Text>
+        <Text style={styles.textOrganization}>{item.item.datetime}</Text>
       </View>
     );
   };
