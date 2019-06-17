@@ -7,6 +7,7 @@ import {
   FlatList
 } from "react-native";
 import { connect } from "react-redux";
+import { fetchDataIncomeList } from '../../actions'
 
 class IncomeList extends Component {
   constructor(props) {
@@ -27,6 +28,14 @@ class IncomeList extends Component {
         }
       ]
     };
+
+    const { id } = props.loginResult
+    fetchDataIncomeList(id)
+  }
+
+  componentDidMount() {
+    // const { id } = this.props.loginResult
+    // fetchDataIncomeList(id)
   }
 
   renderList = item => {
@@ -47,7 +56,9 @@ class IncomeList extends Component {
 
   render() {
     const { id } = this.props.loginResult;
-    console.log(this.props.loginResult);
+    // console.log(this.props.loginResult);
+    console.log(this.props.dataIncome)
+
     return (
       <View style={styles.container}>
         <View style={styles.flatListContainer}>
@@ -69,8 +80,10 @@ class IncomeList extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state)
   return {
-    loginResult: state.dataLogin.data
+    loginResult: state.dataLogin.data,
+    dataIncome: state.dataIncome
   };
 };
 

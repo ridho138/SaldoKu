@@ -6,7 +6,7 @@ import { fetchLogout } from "../actions/index";
 class Home extends Component {
   render() {
     const { id } = this.props.loginResult;
-    console.log(this.props.loginResult);
+    
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>

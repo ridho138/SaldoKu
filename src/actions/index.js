@@ -72,3 +72,23 @@ const apiLogout = (token) => {
       console.log(error)
     })
 }
+
+export const FETCH_DATA_INCOME_LIST = 'FETCH_DATA_INCOME_LIST'
+export const fetchDataIncomeList = token => {
+  return {
+    type: FETCH_DATA_INCOME_LIST,
+    payload: getIncomeList(token)
+  }
+}
+
+const getIncomeList = token => {
+  const ApiUrl = `http://codefazz.com:3000/api/incomes?access_token=${token}`
+  return axios.get(ApiUrl)
+    .then(res => {
+      console.log(res.data)
+      return res.data
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
