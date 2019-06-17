@@ -95,7 +95,7 @@ const dataIncome = (state = {
       }
 
     case `${FETCH_DATA_INCOME_LIST}_${FULFILLED}`:
-      console.log(action.payload)
+      console.log(action)
       return {
         ...state,
         isFetching: false,

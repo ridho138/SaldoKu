@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { fetchLogout } from "../actions/index";
+import { fetchDataIncomeList } from '../actions'
 
 class Home extends Component {
   render() {

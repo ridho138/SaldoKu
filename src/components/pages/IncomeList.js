@@ -12,33 +12,24 @@ import { fetchDataIncomeList } from '../../actions'
 class IncomeList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      dataIncome: [
-        {
-          id: "1",
-          label: "Salary",
-          amount: "350,000",
-          organization: "PT ABC"
-        },
-        {
-          id: "2",
-          label: "Side Project",
-          amount: "150,000",
-          organization: "-"
-        }
-      ]
-    };
-
-    const { id } = props.loginResult
-    fetchDataIncomeList(id)
+    // this.state = {
+    //   dataIncome: []
+    // };
   }
 
   componentDidMount() {
-    // const { id } = this.props.loginResult
-    // fetchDataIncomeList(id)
+    const { id } = this.props.loginResult
+    this.props.dispatch(fetchDataIncomeList(id))
   }
 
+  // componentWillReceiveProps(nextProps) {
+  //   if (this.props.dataIncome !== nextProps.dataIncome) {
+  //     this.setState({ dataIncome: nextProps.dataIncome })
+  //   }
+  // }
+
   renderList = item => {
+    console.log(item)
     return (
       <TouchableOpacity
         onPress={() => this.props.navigation.navigate('IncomeEdit')}
@@ -63,7 +54,7 @@ class IncomeList extends Component {
       <View style={styles.container}>
         <View style={styles.flatListContainer}>
           <FlatList
-            data={this.state.dataIncome}
+            data={this.props.dataIncome}
             keyExtractor={item => item.id}
             renderItem={({ item }) => this.renderList(item)}
             ItemSeparatorComponent={this.renderSeparator}
@@ -83,7 +74,7 @@ const mapStateToProps = state => {
   console.log(state)
   return {
     loginResult: state.dataLogin.data,
-    dataIncome: state.dataIncome
+    dataIncome: state.dataIncome.data
   };
 };
 

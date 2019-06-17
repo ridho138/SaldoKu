@@ -73,10 +73,10 @@ const apiLogout = (token) => {
     })
 }
 
-export const FETCH_DATA_INCOME_LIST = 'FETCH_DATA_INCOME_LIST'
+export const FETCH_INCOME_LIST = 'FETCH_INCOME_LIST'
 export const fetchDataIncomeList = token => {
   return {
-    type: FETCH_DATA_INCOME_LIST,
+    type: FETCH_INCOME_LIST,
     payload: getIncomeList(token)
   }
 }
