@@ -5,6 +5,7 @@ import {
   FETCH_SIGNUP,
   FETCH_LOGIN,
   FETCH_DATA_INCOME_LIST,
+  FETCH_DATA_INCOME_ADD
 } from '../actions/index'
 
 const data = (state = {
@@ -112,11 +113,41 @@ const dataIncome = (state = {
   }
 }
 
+const dataIncomeAdd = (state = {
+  isFetching: false,
+  status: ""
+}, action) => {
+  switch (action.type){
+    case `${FETCH_DATA_INCOME_ADD}_${PENDING}`:
+      return {
+        ...state,
+        isFetching: true
+      }
+
+    case `${FETCH_DATA_INCOME_ADD}_${FULFILLED}`:
+      console.log(action.payload)
+      return {
+        ...state,
+        isFetching: false,
+        status: action.payload
+      }
+
+    case `${FETCH_DATA_INCOME_ADD}_${REJECTED}`:
+      return {
+        isFetching: false,
+      }
+
+    default:
+      return state
+  }
+}
+
 const rootReducer = combineReducers({
   data,
   dataSignup,
   dataLogin,
-  dataIncome
+  dataIncome,
+  dataIncomeAdd
 })
 
 export default rootReducer

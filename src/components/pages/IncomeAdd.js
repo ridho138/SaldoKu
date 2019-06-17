@@ -5,42 +5,72 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  TextInput
+  TextInput,
+  Alert
 } from "react-native";
 import { connect } from "react-redux";
+import { fetchDataIncomeAdd } from "../../actions"
 
 class IncomeAdd extends Component {
   constructor(props) {
     super(props);
+    state = {
+      label: "",
+      amount: "",
+      organization: ""
+    }
     
+  }
+
+  saveHandler = () => {
+    const { label, amount, organization } = this.state
+    const { id } = this.props.loginResult
+
+    console.log(this.state)
+    console.log(id)
+
+    if(label !== "" && amount !== ""){
+      this.props.dispatch(fetchDataIncomeAdd(id, label, amount, organization))
+    }
+    else {
+      Alert.alert("Warning", "Label and/or Amount cannot be empty!");
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    const { incomeAddResult } = nextProps
+    console.log(nextProps)
+    if (incomeAddResult === "200") {
+      this.props.navigation.goBack()
+    }
   }
 
   
   render() {
-    const { id } = this.props.loginResult;
-    console.log(this.props.loginResult);
+    //const { id } = this.props.loginResult;
+    //console.log(this.props.loginResult);
     return (
       <View style={styles.container}>
         <View style={styles.flatListContainer}>
         <TextInput
             style={styles.input}
             placeholder="LABEL"
-            // onChangeText={value => this.setState({ email: value })}
+            onChangeText={value => this.setState({ label: value })}
             // value={this.state.email}
           />
           <TextInput
             style={styles.input}
             placeholder="AMOUNT"
-            onChangeText={value => this.setState({ password: value })}
+            onChangeText={value => this.setState({ amount: value })}
             // value={this.state.password}
           />
           <TextInput
             style={styles.input}
             placeholder="ORGANIZATION"
-            // onChangeText={value => this.setState({ password: value })}
+            onChangeText={value => this.setState({ organization: value })}
             // value={this.state.password}
           />
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => this.saveHandler()}>
             <Text style={styles.buttonText}>SAVE</Text>
           </TouchableOpacity>
         </View>
@@ -52,7 +82,8 @@ class IncomeAdd extends Component {
 
 const mapStateToProps = state => {
   return {
-    loginResult: state.dataLogin.data
+    loginResult: state.dataLogin.data,
+    incomeAddResult: state.dataIncomeAdd.status
   };
 };
 

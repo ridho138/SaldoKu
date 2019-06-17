@@ -92,3 +92,24 @@ const getIncomeList = token => {
       console.log(error)
     })
 }
+
+export const FETCH_DATA_INCOME_ADD = 'FETCH_DATA_INCOME_ADD'
+export const fetchDataIncomeAdd = (token, label, amount, organization) => {
+  return {
+    type: FETCH_DATA_INCOME_ADD,
+    payload: postIncomeAdd(token, label, amount, organization)
+  }
+}
+
+const postIncomeAdd = (token, label, amount, organization) => {
+  const ApiUrl = `http://codefazz.com:3000/api/incomes?access_token=${token}`
+  const payload = { label, amount, organization}
+  return axios.post(ApiUrl, payload)
+    .then(res => {
+      console.log(res)
+      return res.status
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
