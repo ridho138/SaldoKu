@@ -29,13 +29,11 @@ class IncomeList extends Component {
       ]
     };
 
-    const { id } = props.loginResult
-    fetchDataIncomeList(id)
   }
 
   componentDidMount() {
-    // const { id } = this.props.loginResult
-    // fetchDataIncomeList(id)
+    const { id } = this.props.loginResult
+    this.props.dispatch(fetchDataIncomeList(id))
   }
 
   renderList = item => {
@@ -57,13 +55,14 @@ class IncomeList extends Component {
   render() {
     const { id } = this.props.loginResult;
     // console.log(this.props.loginResult);
+    console.log("this.props.dataIncome")
     console.log(this.props.dataIncome)
 
     return (
       <View style={styles.container}>
         <View style={styles.flatListContainer}>
           <FlatList
-            data={this.state.dataIncome}
+            data={this.props.dataIncome}
             keyExtractor={item => item.id}
             renderItem={({ item }) => this.renderList(item)}
             ItemSeparatorComponent={this.renderSeparator}
@@ -83,7 +82,7 @@ const mapStateToProps = state => {
   console.log(state)
   return {
     loginResult: state.dataLogin.data,
-    dataIncome: state.dataIncome
+    dataIncome: state.dataIncome.data
   };
 };
 
