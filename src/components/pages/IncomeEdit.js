@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 
-class SpendingAdd extends Component {
+class IncomeEdit extends Component {
   constructor(props) {
     super(props);
     
@@ -32,6 +32,12 @@ class SpendingAdd extends Component {
             style={styles.input}
             placeholder="AMOUNT"
             onChangeText={value => this.setState({ password: value })}
+            // value={this.state.password}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="ORGANIZATION"
+            // onChangeText={value => this.setState({ password: value })}
             // value={this.state.password}
           />
           <TouchableOpacity style={styles.buttonContainer}>
@@ -100,4 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps)(SpendingAdd);
+export default connect(mapStateToProps)(IncomeEdit);

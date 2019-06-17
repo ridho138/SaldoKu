@@ -16,8 +16,10 @@ import Signup from "./components/Signup"
 import Home from './components/Home'
 import IncomeList from "./components/pages/IncomeList"
 import IncomeAdd from "./components/pages/IncomeAdd.js"
+import IncomeEdit from './components/pages/IncomeEdit'
 import SpendingList from './components/pages/SpendingList'
 import SpendingAdd from './components/pages/SpendingAdd'
+import SpendingEdit from './components/pages/SpendingEdit'
 import { createStackNavigator } from 'react-navigation'
 
 class Setup extends Component {
@@ -42,12 +44,18 @@ const RootNavigation = createStackNavigator({
   IncomeAdd: {
     screen: IncomeAdd
   },
+  IncomeEdit: {
+    screen: IncomeEdit
+  },
   SpendingListPage: {
     screen: SpendingList
   },
   SpendingAddPage: {
     screen: SpendingAdd
-  }
+  },
+  SpendingEditPage: {
+    screen: SpendingEdit
+  },
 },
 {
   headerMode:"none"

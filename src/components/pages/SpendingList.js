@@ -32,11 +32,13 @@ class SpendingList extends Component {
   renderList = item => {
       console.log(item)
     return (
-      <View style={styles.listContainer}>
+      <TouchableOpacity 
+        onPress={() => this.props.navigation.navigate('SpendingEditPage')}
+        style={styles.listContainer}>
         <Text style={styles.textLabel}>{item.item.label}</Text>
         <Text style={styles.textAmount}>{item.item.amount}</Text>
         <Text style={styles.textOrganization}>{item.item.datetime}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -60,7 +62,7 @@ class SpendingList extends Component {
         <View style={styles.footerContainer}>
           <TouchableOpacity 
             style={styles.buttonContainer} 
-            onPress={() => this.props.navigation.navigate('SpendingAdd')}>
+            onPress={() => this.props.navigation.navigate('SpendingAddPage')}>
             <Text style={styles.buttonText}>ADD</Text>
           </TouchableOpacity>
         </View>

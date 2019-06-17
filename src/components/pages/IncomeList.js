@@ -31,11 +31,13 @@ class IncomeList extends Component {
 
   renderList = item => {
     return (
-      <View style={styles.listContainer}>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('IncomeEdit')}
+        style={styles.listContainer}>
         <Text style={styles.textLabel}>{item.label}</Text>
         <Text style={styles.textAmount}>{item.amount}</Text>
         <Text style={styles.textOrganization}>{item.organization}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 

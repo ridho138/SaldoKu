@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 
-class SpendingAdd extends Component {
+class SpendingEdit extends Component {
   constructor(props) {
     super(props);
     
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps)(SpendingAdd);
+export default connect(mapStateToProps)(SpendingEdit);
