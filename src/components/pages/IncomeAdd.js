@@ -9,7 +9,7 @@ import {
   Alert
 } from "react-native";
 import { connect } from "react-redux";
-import { fetchDataIncomeAdd } from "../../actions"
+import { fetchDataIncomeAdd, fetchDataIncomeList } from "../../actions"
 
 class IncomeAdd extends Component {
   constructor(props) {
