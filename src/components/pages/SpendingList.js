@@ -7,26 +7,12 @@ import {
   FlatList
 } from "react-native";
 import { connect } from "react-redux";
+import { fetchDataSpending } from '../../actions'
 
 class SpendingList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dataSpending: [
-        {
-          id: "1",
-          label: "Makan Siang",
-          amount: "35000",
-          datetime: "ABC"
-        },
-        {
-          id: "2",
-          label: "Makan Malam",
-          amount: "25000",
-          datetime: "DEF"
-        }
-      ]
-    };
+  componentDidMount() {
+    const { id } = this.props.loginResult
+    this.props.dispatch(fetchDataSpending(id))
   }
 
   renderList = item => {
@@ -53,7 +39,7 @@ class SpendingList extends Component {
       <View style={styles.container}>
         <View style={styles.flatListContainer}>
           <FlatList
-            data={this.state.dataSpending}
+            data={this.props.dataSpending}
             keyExtractor={item => item.id}
             renderItem={this.renderList}
             ItemSeparatorComponent={this.renderSeparator}
@@ -73,7 +59,8 @@ class SpendingList extends Component {
 
 const mapStateToProps = state => {
   return {
-    loginResult: state.dataLogin.data
+    loginResult: state.dataLogin.data,
+    dataSpending: state.dataSpending.data
   };
 };
 
