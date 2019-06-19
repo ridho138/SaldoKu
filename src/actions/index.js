@@ -137,3 +137,27 @@ const getSpendingList = token => {
     })
 }
 
+export const FETCH_DATA_SPENDING_ADD = 'FETCH_DATA_SPENDING_ADD'
+export const fetchDataSpendingAdd = (token, label, amount) => {
+  return {
+    type: FETCH_DATA_SPENDING_ADD,
+    payload: postSpendingAdd(token, label, amount)
+  }
+}
+
+const postSpendingAdd = (token, label, amount) => {
+  const ApiUrl = `http://codefazz.com:3000/api/spendings?access_token=${token}`
+  const payload = { label, amount }
+  return axios.post(ApiUrl, payload)
+    .then(res => {
+      console.log(res)
+      return {
+        status: res.status,
+        dataPayload: { label, amount }
+      }
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+

@@ -9,12 +9,36 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 
+import { fetchDataSpendingAdd } from "../../actions"
+
 class SpendingAdd extends Component {
   constructor(props) {
     super(props);
-    
+    state = {
+      label: "",
+      amount: ""
+    }
   }
 
+  saveHandler = () => {
+    const { label, amount } = this.state
+    const { id } = this.props.loginResult
+
+    if(label !== "" && amount !== ""){
+      this.props.dispatch(fetchDataSpendingAdd(id, label, amount))
+    }
+    else {
+      Alert.alert("Warning", "Label and/or Amount cannot be empty!");
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    const { spendingAddResult } = nextProps
+    console.log(nextProps)
+    if (spendingAddResult.status === 200) {
+      this.props.navigation.goBack()
+    }
+  }
   
   render() {
     const { id } = this.props.loginResult;
@@ -25,16 +49,16 @@ class SpendingAdd extends Component {
         <TextInput
             style={styles.input}
             placeholder="LABEL"
-            // onChangeText={value => this.setState({ email: value })}
+            onChangeText={value => this.setState({ label: value })}
             // value={this.state.email}
           />
           <TextInput
             style={styles.input}
             placeholder="AMOUNT"
-            onChangeText={value => this.setState({ password: value })}
+            onChangeText={value => this.setState({ amount: value })}
             // value={this.state.password}
           />
-          <TouchableOpacity style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.buttonContainer} onPress={() => this.saveHandler()}>
             <Text style={styles.buttonText}>SAVE</Text>
           </TouchableOpacity>
         </View>
@@ -46,7 +70,8 @@ class SpendingAdd extends Component {
 
 const mapStateToProps = state => {
   return {
-    loginResult: state.dataLogin.data
+    loginResult: state.dataLogin.data,
+    spendingAddResult: state.dataSpendingAdd.data
   };
 };
 
