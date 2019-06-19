@@ -5,7 +5,8 @@ import {
   FETCH_SIGNUP,
   FETCH_LOGIN,
   FETCH_DATA_INCOME_LIST,
-  FETCH_DATA_INCOME_ADD
+  FETCH_DATA_INCOME_ADD,
+  FETCH_DATA_SPENDING,
 } from '../actions/index'
 
 const data = (state = {
@@ -109,6 +110,16 @@ const dataIncome = (state = {
         isFetching: false,
       }
 
+    default:
+      return state
+  }
+}
+
+const dataIncomeAdd = (state = {
+  isFetching: false,
+  data: []
+}, action) => {
+  switch (action.type){
     case `${FETCH_DATA_INCOME_ADD}_${PENDING}`:
       return {
         ...state,
@@ -116,13 +127,10 @@ const dataIncome = (state = {
       }
 
     case `${FETCH_DATA_INCOME_ADD}_${FULFILLED}`:
-      console.log(action.payload)
-      console.log(...data, state)
       return {
         ...state,
         isFetching: false,
-        data: [...state.data, ...action.payload ],
-        // status: action.payload
+        data: action.payload
       }
 
     case `${FETCH_DATA_INCOME_ADD}_${REJECTED}`:
@@ -135,24 +143,40 @@ const dataIncome = (state = {
   }
 }
 
-// const dataIncomeAdd = (state = {
-//   isFetching: false,
-//   status: ""
-// }, action) => {
-//   switch (action.type){
-    
+const dataSpending = (state = {
+  isFetching: false,
+  data: []
+}, action) => {
+  switch (action.type) {
+    case `${FETCH_DATA_SPENDING}_${PENDING}`:
+      return {
+        isFetching: true
+      }
 
-//     default:
-//       return state
-//   }
-// }
+    case `${FETCH_DATA_SPENDING_}${FULFILLED}`:
+      return {
+        isFetching: false,
+        data: action.payload
+      }
+
+    case `${FETCH_DATA_SPENDING_}${REJECTED}`:
+      return {
+        isFetching: false
+      }
+
+    default: 
+      return state
+  }
+}
+
 
 const rootReducer = combineReducers({
   data,
   dataSignup,
   dataLogin,
   dataIncome,
-  // dataIncomeAdd
+  dataIncomeAdd,
+  dataSpending
 })
 
 export default rootReducer

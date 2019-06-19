@@ -121,8 +121,19 @@ export const FETCH_DATA_SPENDING = 'FETCH_DATA_SPENDING'
 export const fetchDataSpending = token => {
   return {
     type: FETCH_DATA_SPENDING,
-    payload: ....
+    payload: getSpendingList(token)
   }
 }
 
-// http://codefazz.com:3000/api/spendings?access_token=${token}
+const getSpendingList = token => {
+  const ApiUrl = `http://codefazz.com:3000/api/spendings?access_token=${token}`
+  return axios.get(ApiUrl)
+    .then(res => {
+      console.log(res)
+      return res.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
