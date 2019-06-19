@@ -107,9 +107,22 @@ const postIncomeAdd = (token, label, amount, organization) => {
   return axios.post(ApiUrl, payload)
     .then(res => {
       console.log(res)
-      return res.status
+      return {
+        status: res.status,
+        dataPayload: { label, amount, organization }
+      }
     })
     .catch(error => {
       console.log(error)
     })
 }
+
+export const FETCH_DATA_SPENDING = 'FETCH_DATA_SPENDING'
+export const fetchDataSpending = token => {
+  return {
+    type: FETCH_DATA_SPENDING,
+    payload: ....
+  }
+}
+
+// http://codefazz.com:3000/api/spendings?access_token=${token}
