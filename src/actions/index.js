@@ -153,7 +153,7 @@ const postSpendingAdd = (token, label, amount) => {
       console.log(res)
       return {
         status: res.status,
-        dataPayload: { label, amount }
+        dataPayload: res.data
       }
     })
     .catch(err => {

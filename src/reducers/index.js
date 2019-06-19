@@ -174,10 +174,12 @@ const dataSpending = (state = {
     case `${FETCH_DATA_SPENDING_ADD}_${FULFILLED}`:
       console.log(state.data)
       console.log(action.payload)
+      const dataSpending = [...state.data , action.payload.dataPayload]
+      console.log(dataSpending)
       return {
         ...state,
         isFetching: false,
-        // data: [...state.data , ...action.payload]
+        data: dataSpending
       }
 
     case `${FETCH_DATA_SPENDING_ADD}_${REJECTED}`:

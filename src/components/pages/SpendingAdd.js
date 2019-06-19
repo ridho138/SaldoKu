@@ -32,13 +32,14 @@ class SpendingAdd extends Component {
     }
   }
 
-  // componentWillReceiveProps(nextProps){
-  //   const { spendingAddResult } = nextProps
-  //   console.log(nextProps)
-  //   if (spendingAddResult.status === 200) {
-  //     this.props.navigation.goBack()
-  //   }
-  // }
+  componentWillReceiveProps(nextProps){
+    const { dataSpending } = nextProps
+    console.log(nextProps)
+    
+    if (this.props.dataSpending !== dataSpending) {
+      this.props.navigation.goBack()
+    }
+  }
   
   render() {
     const { id } = this.props.loginResult;
@@ -72,7 +73,7 @@ const mapStateToProps = state => {
   console.log(state)
   return {
     loginResult: state.dataLogin.data,
-    // dataSpending: state.dataSpending.data
+    dataSpending: state.dataSpending.data
   };
 };
 
