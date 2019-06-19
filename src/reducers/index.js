@@ -165,16 +165,6 @@ const dataSpending = (state = {
         isFetching: false
       }
 
-    default: 
-      return state
-  }
-}
-
-const dataSpendingAdd = (state = {
-  isFetching: false,
-  data: {}
-}, action) => {
-  switch (action.type){
     case `${FETCH_DATA_SPENDING_ADD}_${PENDING}`:
       return {
         ...state,
@@ -182,10 +172,12 @@ const dataSpendingAdd = (state = {
       }
 
     case `${FETCH_DATA_SPENDING_ADD}_${FULFILLED}`:
+      console.log(state.data)
+      console.log(action.payload)
       return {
         ...state,
         isFetching: false,
-        data: action.payload
+        // data: [...state.data , ...action.payload]
       }
 
     case `${FETCH_DATA_SPENDING_ADD}_${REJECTED}`:
@@ -193,10 +185,22 @@ const dataSpendingAdd = (state = {
         isFetching: false,
       }
 
-    default:
+    default: 
       return state
   }
 }
+
+// const dataSpendingAdd = (state = {
+//   isFetching: false,
+//   data: {}
+// }, action) => {
+//   switch (action.type){
+    
+
+//     default:
+//       return state
+//   }
+// }
 
 
 const rootReducer = combineReducers({
@@ -206,7 +210,7 @@ const rootReducer = combineReducers({
   dataIncome,
   dataIncomeAdd,
   dataSpending,
-  dataSpendingAdd
+  // dataSpendingAdd
 })
 
 export default rootReducer
