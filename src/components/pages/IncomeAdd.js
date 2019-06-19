@@ -40,7 +40,7 @@ class IncomeAdd extends Component {
   componentWillReceiveProps(nextProps){
     const { incomeAddResult } = nextProps
     console.log(nextProps)
-    if (incomeAddResult === "200") {
+    if (incomeAddResult === 200) {
       this.props.navigation.goBack()
     }
   }
@@ -83,7 +83,7 @@ class IncomeAdd extends Component {
 const mapStateToProps = state => {
   return {
     loginResult: state.dataLogin.data,
-    incomeAddResult: state.dataIncomeAdd.status
+    // incomeAddResult: state.dataIncomeAdd.status
   };
 };
 
