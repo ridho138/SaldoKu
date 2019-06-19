@@ -10,24 +10,9 @@ import { connect } from "react-redux";
 import { fetchDataSpending } from '../../actions'
 
 class SpendingList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dataSpending: [
-        {
-          id: "1",
-          label: "Makan Siang",
-          amount: "35000",
-          datetime: "ABC"
-        },
-        {
-          id: "2",
-          label: "Makan Malam",
-          amount: "25000",
-          datetime: "DEF"
-        }
-      ]
-    };
+  componentDidMount() {
+    const { id } = this.props.loginResult
+    this.props.dispatch(fetchDataSpending(id))
   }
 
   componentDidMount() {
